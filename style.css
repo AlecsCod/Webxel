@@ -14,11 +14,14 @@
 }
 
 .form-box {
+    border-radius: 10px;
     width: 380px;
     height: 480px;
     position: relative;
     margin: 6% auto;
-    background-color: #fff;
+    background: #e0e0e0;
+    box-shadow: inset -25px 25px 50px #d3d3d3,
+                inset 25px -25px 50px #ededed;
     padding: 5px;
     overflow: hidden;
 }
@@ -46,7 +49,7 @@
     position: absolute;
     width: 110px;
     height: 100%;
-    background: linear-gradient(to right, #ff105f, #ffad06);
+    background: linear-gradient(to top, #0b4d2e, #6bb999);
     border-radius: 30px;
     transition: .5s;
 }
@@ -90,7 +93,7 @@
     cursor: pointer;
     display: block;
     margin: auto;
-    background: linear-gradient(to right, #ff105f, #ffad06);
+    background: linear-gradient(to top, #0b4d2e, #6bb999);
     border: 0;
     outline: none;
     border-radius: 30px;

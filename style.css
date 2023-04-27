@@ -41,6 +41,7 @@
     border: 0;
     outline: none;
     position: relative;
+    font-family: Grafitti;
 }
 
 #btn {
@@ -123,4 +124,10 @@ span {
 @font-face {
     font-family: F25_Executive;
     src: url(F25_Executive.otf);
+}
+
+@font-face {
+    font-family: Grafitti;
+    font-size: 40px;
+    src: url(adrip1.ttf);
 }

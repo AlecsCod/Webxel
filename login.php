@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html html lang="en" dir="ltr>
+<html html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -13,8 +13,8 @@
         <div class="form-box">
             <div class="button-box">
                 <div id="btn"></div>
-                <button type="button" class="toggle-btn" onclick="login()">Log in</button>
-                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                <button style="font-famiy: Grafitti;" type="button" class="toggle-btn" onclick="login()">Log in</button>
+                <button style="font-famiy: Grafitti;" type="button" class="toggle-btn" onclick="register()">Register</button>
 
             </div>
             <div class="social-icons">

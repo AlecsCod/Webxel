@@ -77,7 +77,6 @@
     border-left: 0;
     border-right: 0;
     border-bottom: 1px solid #999;
-    border-top: 1px;
     outline: none;
     background: transparent;
 
@@ -89,14 +88,14 @@
     cursor: pointer;
     display: block;
     margin: auto;
-    background: #777;
+    background: #8BC0BA;
     border: 0;
     outline: none;
 
 }
 
 .check-box {
-    margin: 30px 10px 35px 0;
+    margin: 30px 10px 17px 0;
 }
 
 span {
@@ -114,9 +113,5 @@ span {
 }
 
 .registration-btn{
-    color:#777;
-    font-size:14px;
-    padding: 30px ;
-    position:absolute;
-    text-decoration: none;
+
 }

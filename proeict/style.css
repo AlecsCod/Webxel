@@ -4,19 +4,19 @@
     font-family: Retro_Gaming;
 }
 
-.bg-image {
-    background-image: url(metal_plate.png);
+body {
+    background: white url(images/metal_plate.png);
     background-position: center;
     background-size: 80px;
-    background-color: white;
-    opacity: 0.75;
+    color: white;
     image-rendering: pixelated;
     height: 100%;
     width: 100%;
     position: absolute;
 }
+
 .vignette {
-    background-image: url(vignette.png);
+    background-image: url(images/vignette.png);
     background-position: center;
     height: 100%;
     width: 100%;
@@ -30,25 +30,27 @@
 }
 
 .form-box {
-    width: 380px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    top: 40px;
+    width: 400px;
     height: 480px;
     position: relative;
-    margin: 6% auto;
+    margin: center;
     background: #e0e0e0;
-    box-shadow: inset -25px 25px 50px #d3d3d3,
-                inset 25px -25px 50px #ededed;
-    padding: 5px;
+    padding: auto;
     overflow: hidden;
 }
 
 .img {
-    padding: 100px 150px;
-    
-    
+    image-rendering: pixelated;
 }
 
-
-
+.charwalk {
+    image-rendering: pixelated;
+    padding-top: 80px;
+}
 
 .input-group {
     top: 180px;

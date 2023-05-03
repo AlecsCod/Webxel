@@ -3,24 +3,26 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Logare si înregistrare</title>
+        <link rel="icon" type="image/gif" href="favicon.gif">
+
+        <title>Log in!</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-
-        <div class="bg-image"></div>
         <div class="vignette"></div>
         <div class="hero">
             <div class="form-box">
-                <div class="img">
-                    <img src="./walk.gif" height="50" width="50">
+                <div class="charwalk">
+                    <marquee behavior="scroll" direction="right" scrollamount="12">
+                        <img src="images/walk.gif" width="80px" height="80px" margin-top= "80px">
+                    </marquee>
                 </div>
                 <form id="login" class="input-group">
                     <input type="text" class="input-field" placeholder="Username" required>
                     <input type="text" class="input-field" placeholder="Password" required>
                     <input type="checkbox" class="check-box"><span>Remember Password</span>
                     <button type="submit" class="submit-btn">Log in</button>
-                    <p><a href="registration.html"  class="registration-btn">Don’t have an account? Register here.</a></p>
+                    <p><a href="registration.html"  class="registration-btn">Don't have an account? Register here.</a></p>
                 </form>
 
             </div>

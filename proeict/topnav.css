@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Retro_Gaming;
+}
+#topnav {
+    width: 100%;
+ 
+    position: fixed;
+    top: 0;
+    left: 0;
+ 
+    background-color: Black;
+ 
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+ }
+ .nav-link {
+    display: inline-block;
+    width: 100px;
+    height: 55px;
+ 
+    color: White;
+ 
+    /* centering text */
+    text-align: center;    /* horizontally */
+    line-height: 55px;     /* vertically */
+    
+    text-decoration: none;
+    float: right
+    ;
+ }
+ 
+ @font-face {
+    font-family: Retro_Gaming;
+    src: url(Retro\ Gaming.ttf);
+}

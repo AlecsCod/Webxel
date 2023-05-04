@@ -100,6 +100,7 @@ body {
     cursor: pointer;
     user-select: none;
     text-align: center;
+    
 }
 
 .submit-btn p {
@@ -110,14 +111,14 @@ body {
   text-align: center;
   margin: -20px 0px;
   line-height: 10px;
-  padding: 15px 20px;
+  padding: 15px 65px;
   background: #000000;
   background-size: 50% 50%;
   background-repeat: no-repeat;
 }
 
 .check-box {
-    margin: 30px 10px 35px 0;
+    margin: 30px 10px 10px 0;
 }
 
 span {

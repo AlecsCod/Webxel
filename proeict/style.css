@@ -48,7 +48,7 @@ body {
     width: 400px;
     height: 480px;
     position: relative;
-    margin: center;
+    margin: auto;
     background: #e0e0e0;
     padding: auto;
     overflow: hidden;
@@ -74,10 +74,10 @@ body {
     width: 100%;
     padding: 10px 0;
     margin: 5px 0;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 1px solid #999;
-    border-top: 1px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 5px solid #999;
+    border-top: 0px;
     outline: none;
     background: transparent;
 
@@ -131,10 +131,10 @@ span {
 }
 
 #login {
-    left: 50px;
+    left: 60px;
 }
 #register {
-     left: 50px;
+     left: 60px;
 }
 
 .registration-btn{

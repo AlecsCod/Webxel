@@ -82,15 +82,38 @@ body {
 }
 
 .submit-btn {
-    width: 85%;
-    padding: 10px 30px;
-    cursor: pointer;
-    display: block;
-    margin: auto;
-    background: #777;
-    border: 0;
-    outline: none;
+    border-style: solid;
+    border-width: 20px;
+    border-image: url(images/boxCorner.png) 4 stretch;
 
+    line-height: 0;
+    image-rendering: crisp-edges;
+    border-style: solid;
+    font-size: 20px;
+    color: white;
+    height: auto;
+    margin: 10px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+}
+
+.submit-btn p {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  width: auto;
+  text-align: center;
+  margin: -20px 0px;
+  line-height: 10px;
+  padding: 15px 20px;
+  background: #000000;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 .check-box {
@@ -102,13 +125,10 @@ span {
     font-size: 12px;
     bottom: 68px;
     position: absolute;
-
-    
 }
 
 #login {
     left: 50px;
-
 }
 
 .registration-btn{

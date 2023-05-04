@@ -35,15 +35,17 @@ body {
 }
 
 .hero {
+    display: table;
+  margin: 0 auto;
     height: 100%;
     width: 100%;
     position: absolute;
 }
 
 .form-box {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
     top: 40px;
     width: 400px;
     height: 480px;
@@ -52,6 +54,7 @@ body {
     background: #e0e0e0;
     padding: auto;
     overflow: hidden;
+    justify-content: space-evenly;
 }
 
 .img {
@@ -59,6 +62,9 @@ body {
 }
 
 .charwalk {
+    /* width: 100px; */
+    box-sizing: content-box;
+    width: fit-content;
     image-rendering: pixelated;
     padding-top: 80px;
 }
@@ -102,6 +108,7 @@ body {
     cursor: pointer;
     user-select: none;
     text-align: center;
+    background-color: transparent;
     
 }
 
@@ -131,7 +138,7 @@ span {
 }
 
 #login {
-    left: 60px;
+    display: inline-block;
 }
 #register {
      left: 60px;

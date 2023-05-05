@@ -48,7 +48,7 @@ body {
     /* margin-right: auto; */
     top: 40px;
     width: 400px;
-    height: 480px;
+    height: 560px;
     position: relative;
     margin: auto;
     background: #e0e0e0;
@@ -66,13 +66,13 @@ body {
     box-sizing: content-box;
     width: fit-content;
     image-rendering: pixelated;
-    padding-top: 80px;
+    padding-top: 160px;
 }
 
 .input-group {
-    top: 160px;
+    top: 240px;
     position: absolute;
-    width: 280px;
+    width: 320px;
     transition: .5s;
 }
 
@@ -107,6 +107,7 @@ body {
     user-select: none;
     text-align: center;
     background-color: transparent;
+    top: 80px;
 }
 
 .submit-btn p {
@@ -123,15 +124,13 @@ body {
   background-repeat: no-repeat;
 }
 
-.check-box {
-    margin: 30px 10px 10px 0;
-}
+.check-box {margin-top: 16px;}
 
 span {
     color: #777;
     font-size: 12px;
-    bottom: 68px;
     position: absolute;
+    margin: 15px 8px;
 }
 
 #login {
@@ -148,6 +147,7 @@ span {
     position:absolute;
     text-decoration: none;
     text-align: center;
+    margin-top: 56px;
 }
 @font-face {
     font-family: Retro_Gaming;

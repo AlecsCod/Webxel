@@ -107,11 +107,12 @@ body {
     user-select: none;
     text-align: center;
     background-color: transparent;
-    top: 80px;
+    margin-top: 50px;
 }
 
 .submit-btn p {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   vertical-align: top;
   position: relative;
   width: 90px;
@@ -137,17 +138,17 @@ span {
     display: inline-block;
 }
 #register {
-     left: 60px;
+    display: inline-block;
 }
 
-.registration-btn{
+.text-btn{
     color:#777;
     font-size:14px;
     padding: 30px;
     position:absolute;
     text-decoration: none;
     text-align: center;
-    margin-top: 56px;
+    margin-top: -20px;
 }
 @font-face {
     font-family: Retro_Gaming;

@@ -137,7 +137,7 @@ span {
     display: inline-block;
 }
 #register {
-      display: inline-block;
+     left: 60px;
 }
 
 .registration-btn{
@@ -148,15 +148,6 @@ span {
     text-decoration: none;
     text-align: center;
     margin-top: 56px;
-}
-.login-btn {
-    color:#777;
-    font-size:14px;
-    padding: 30px;
-    position:absolute;
-    text-decoration: none;
-    text-align: center;
-}
 }
 @font-face {
     font-family: Retro_Gaming;

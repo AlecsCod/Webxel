@@ -62,11 +62,15 @@ body {
 }
 
 .charwalk {
-    /* width: 100px; */
-    box-sizing: content-box;
-    width: fit-content;
+    position: absolute;
     image-rendering: pixelated;
-    padding-top: 160px;
+    top: 160px;
+}
+
+.logo {
+    position: absolute;
+    image-rendering: pixelated;
+    top: 40px;
 }
 
 .input-group {

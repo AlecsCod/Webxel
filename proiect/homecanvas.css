@@ -1,0 +1,23 @@
+* {
+    font-family: Retro_Gaming;
+}
+
+body{
+    image-rendering: pixelated;
+    background: #263030;
+}
+
+#canvas {
+    width: auto;
+    height: 480px;
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    background-color: Black;
+    z-index: 1;
+ }
+ 
+ @font-face {
+    font-family: Retro_Gaming;
+    src: url(Retro\ Gaming.ttf);
+}

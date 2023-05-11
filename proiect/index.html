@@ -8,8 +8,27 @@
       <link rel="stylesheet" href="homecanvas.css">
 
       <title>Webxel</title>
+
+      <script type="text/javascript">
+         function setupCanvas()
+         {
+            var canvas = document.getElementById("canvas");
+
+            if(canvas.getContext)
+            {
+               var layout = canvas.getContext('2d');
+               var img = new Image();
+               img.src = 'images/walk.gif';
+
+               img.onload = function()
+               {
+                  layout.drawImage(img, 100, 100);
+               }
+            }
+         }
+      </script>
    </head>
-   <body>
+   <body onload="setupCanvas();">
       <nav id="topnav">
          <img src="images/logo.png" class="logo" height="40px">
          <div class="buttons">

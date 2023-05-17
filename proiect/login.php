@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
 
@@ -22,12 +22,12 @@
                     </marquee>
                 </div>
                 <form id="login" class="input-group">
-                    <input type="text" class="input-field" placeholder="Username" required>
-                    <input type="text" class="input-field" placeholder="Password" required>
+                    <input name="user" id="user" type="text" class="input-field" placeholder="Username" required>
+                    <input name="user" id="pass" type="password" class="input-field" placeholder="Password" required>
 
-                    <input type="checkbox" class="check-box"><span>Remember Password</span>
+                    <input type="checkbox" class="check-box" ><span>Remember Password</span>
 
-                    <button type="submit" class="submit-btn">
+                    <button name="submit" id="btn" type="submit" class="submit-btn" value="Login">
                         <p>Log in</p>
                     </button>
                     

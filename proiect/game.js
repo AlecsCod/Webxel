@@ -17,8 +17,6 @@ Type 7: Player.
 (Z Index va lua valoarea tipului obiectului)
 */
 
-//------------------------------------------------
-
 var objectNr = 0;
 const objectList = [];
 
@@ -34,14 +32,23 @@ class object
         this.frameX = 0;
         this.frameY = 0;
         objectList.push(this);
+        this.lerpedX = x * 16;
+        this.lerpedY = y * 16;
     }
-    update()
+    updateObj()
     {
-        ctx.drawImage(this.img, 0, 0, 16, 16, this.x * 16, this.y * 16, 16, 16);
+        if (this.lerpedX != this.x || this.lerpedY != this.y)
+        {
+            this.lerpedX = lerp(this.lerpedX, this.x * 16, 0.1);
+            this.lerpedY = lerp(this.lerpedY, this.y * 16, 0.1);
+        }
+
+        ctx.drawImage(this.img, 0, 0, 16, 16, Math.round(this.lerpedX), Math.round(this.lerpedY), 16, 16);
+        //console.log(this.lerpedX + " " + this.lerpedY + " " + this.x + " " + this.y);
     }
 };
 
-//-------------------------------------------------
+///// LOADING /////
 
 const background = new Image();
 background.src = "images/gameAssets/metal_plate.png";
@@ -53,7 +60,7 @@ objectList.sort((a, b) =>
     return a.objType - b.objType;
 });
 
-//-------------------------------------------------
+///// DIVERSE FUNCȚII /////
 
 window.addEventListener("keydown", movePlayer, false);
 
@@ -86,23 +93,30 @@ function movePlayer(e)
             }
             break;  
     }
-}  
+} 
 
-//-------------------------------------------------
+function lerp(start, end, t)
+{
+    return start * (1 - t) + end * t;
+}
 
-function drawObjects()
+///// UPDATE /////
+
+let objLLen = objectList.length, pat = ctx.createPattern(background, 'repeat');
+
+function draw()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.rect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = ctx.createPattern(background, 'repeat');
+    ctx.fillStyle = pat;
     ctx.fill();
 
-    for (var i = 0; i < objectList.length; i++)
+    for (var i = 0; i < objLLen; i++)
     {
-        objectList[i].update();
+        objectList[i].updateObj();
     }
 
-    requestAnimationFrame(drawObjects);
+    requestAnimationFrame(draw);
 }
-drawObjects();
+draw();

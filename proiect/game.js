@@ -37,14 +37,37 @@ class object
     }
     updateObj()
     {
-        if (this.lerpedX != this.x || this.lerpedY != this.y)
+        if (this.objType == 3 || this.objType == 7)
         {
+            if (this.objType == 7)
+            {
+                if (Math.round(this.lerpedX) != Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) || 
+                Math.round(this.lerpedY) != Math.round(lerp(this.lerpedY, this.y * 16, 0.1)))
+                {
+                    if (this.frameX != 3)
+                    {
+                        this.frameX++
+                    }
+                    else
+                    {
+                        this.frameX = 0;
+                    }
+                }
+                else if (Math.round(this.lerpedX) == this.x * 16 && Math.round(this.lerpedY) == this.y * 16)
+                {
+                    this.frameX = 0;
+                }
+            }
+
+            console.log(Math.round(this.lerpedX) + " " + Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) + " " + Math.round(this.lerpedY) + " " + Math.round(lerp(this.lerpedY, this.x * 16, 0.1)) + " " + this.moving);
+
             this.lerpedX = lerp(this.lerpedX, this.x * 16, 0.1);
             this.lerpedY = lerp(this.lerpedY, this.y * 16, 0.1);
+
+            ctx.drawImage(this.img, 16 * this.frameX, 16 * this.frameY, 16, 16, Math.round(this.lerpedX), Math.round(this.lerpedY), 16, 16);
+            //console.log(this.lerpedX + " " + this.lerpedY + " " + this.x + " " + this.y);
         }
 
-        ctx.drawImage(this.img, 0, 0, 16, 16, Math.round(this.lerpedX), Math.round(this.lerpedY), 16, 16);
-        //console.log(this.lerpedX + " " + this.lerpedY + " " + this.x + " " + this.y);
     }
 };
 
@@ -72,6 +95,7 @@ function movePlayer(e)
             if (player.x - 1 >= 0)
             {
                 player.x--;
+                player.frameY = 1;
             }
             break;
         case 38: // SUS
@@ -84,6 +108,7 @@ function movePlayer(e)
             if (player.x + 1 <= canvas.width / 16 - 1)
             {
                 player.x++;
+                player.frameY = 0;
             }
             break;
         case 40: // JOS

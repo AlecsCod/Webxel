@@ -16,7 +16,7 @@ Type 5: On/Off Obstacle;
 Type 6: Goal;
 Type 7: Player.
 
-(Z Index va lua valoarea tipului obiectului)
+(Array-ul objectList de mai jos va fi sortat în funcție de objType pentru rendering fără probleme vizuale pe canvas)
 */
 
 var objectNr = 0;
@@ -36,46 +36,75 @@ class object
         objectList.push(this);
         this.lerpedX = x * 16;
         this.lerpedY = y * 16;
+        this.moving = false;
+        this.animating = false;
     }
+    /*checkAdjacency() // PUSHABLE OBJECT CONDITION CHECKER
+    {
+
+    }*/
     updateObj()
     {
-        if (this.objType == 3 || this.objType == 7)
+        if (this.objType == 3 || this.objType == 7) // OBJECT MOVEMENT
         {
-            if (this.objType == 7)
-            {
-                if (Math.round(this.lerpedX) != Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) || 
-                Math.round(this.lerpedY) != Math.round(lerp(this.lerpedY, this.y * 16, 0.1)))
-                {
-                    if (this.frameX != 3)
-                    {
-                        this.frameX++
-                    }
-                    else
-                    {
-                        this.frameX = 0;
-                    }
-                }
-                else if (Math.round(this.lerpedX) == this.x * 16 && Math.round(this.lerpedY) == this.y * 16)
-                {
-                    this.frameX = 0;
-                }
-            }
-
-            //console.log(Math.round(this.lerpedX) + " " + Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) + " " + Math.round(this.lerpedY) + " " + Math.round(lerp(this.lerpedY, this.x * 16, 0.1)) + " " + this.moving);
-
             this.lerpedX = lerp(this.lerpedX, this.x * 16, 0.1);
             this.lerpedY = lerp(this.lerpedY, this.y * 16, 0.1);
 
-            ctx.drawImage(this.img, 16 * this.frameX, 16 * this.frameY, 16, 16, Math.round(this.lerpedX), Math.round(this.lerpedY), 16, 16);
-            //console.log(this.lerpedX + " " + this.lerpedY + " " + this.x + " " + this.y);
+            if (Math.round(this.lerpedX) != this.x * 16 || Math.round(this.lerpedY) != this.y * 16)
+            {
+                this.moving = true;
+            }
+            else
+            {
+                this.moving = false;
+            }
         }
 
+        switch (this.objType)
+        {
+            case 7: // PLAYER
+                {
+                    if ((Math.round(this.lerpedX) != Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) || 
+                    Math.round(this.lerpedY) != Math.round(lerp(this.lerpedY, this.y * 16, 0.1))))
+                    {
+                        if (Math.round(this.lerpedX) % 2 != 0 || Math.round(this.lerpedY) % 2 != 0)
+                        {
+                            if (this.frameX != 3 && this.moving)
+                            {
+                                this.frameX++;
+                            }
+                            else
+                            {
+                                this.frameX = 0;
+                            }
+                        }
+                    }
+                    // ^^^ WEBXEL CHAR/PLAYER ANIMATION CODE ^^^
+
+                    if (!this.moving) // Fixes the animation stuck on walk issue :O
+                    {
+                        setTimeout(() =>
+                        {
+                            if (!this.moving)
+                            {
+                                this.frameX = 0;
+                                this.animating = false;
+                            }
+                        }, 100);
+                    }
+                }
+        }
+
+        ctx.drawImage(this.img, 16 * this.frameX, 16 * this.frameY, 16, 16, Math.round(this.lerpedX), Math.round(this.lerpedY), 16, 16);
+        // ^^^ RENDER EACH OBJECT ^^^
     }
 };
 
 ///// LOADING /////
 
 const player = new object(0, 0, 7, "character");
+
+console.log(player.constructor.name);
 
 objectList.sort((a, b) =>
 {
@@ -88,34 +117,38 @@ window.addEventListener("keydown", movePlayer, false);
 
 function movePlayer(e)
 {
-    switch(e.keyCode)
+    if (!player.moving)
     {
-        case 37: // STÂNGA
-            if (player.x - 1 >= 0)
-            {
-                player.x--;
-                player.frameY = 1;
-            }
-            break;
-        case 38: // SUS
-            if (player.y - 1 >= 0)
-            {
-                player.y--;
-            }
-            break;
-        case 39: // DREAPTA
-            if (player.x + 1 <= canvas.width / 16 - 1)
-            {
-                player.x++;
-                player.frameY = 0;
-            }
-            break;
-        case 40: // JOS
-            if (player.y + 1 <= canvas.height / 16 - 1)
-            {
-                player.y++;
-            }
-            break;  
+        player.frameX = 0;
+        switch(e.keyCode)
+        {
+            case 37: // STÂNGA
+                if (player.x - 1 >= 0)
+                {
+                    player.x--;
+                    player.frameY = 1;
+                }
+                break;
+            case 38: // SUS
+                if (player.y - 1 >= 0)
+                {
+                    player.y--;
+                }
+                break;
+            case 39: // DREAPTA
+                if (player.x + 1 <= canvas.width / 16 - 1)
+                {
+                    player.x++;
+                    player.frameY = 0;
+                }
+                break;
+            case 40: // JOS
+                if (player.y + 1 <= canvas.height / 16 - 1)
+                {
+                    player.y++;
+                }
+                break;  
+        }
     }
 } 
 

@@ -1,8 +1,10 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = 240;
-canvas.height = 160;
+var gridHeight = 10, gridWidth = 16;
+
+canvas.height = 16 * gridHeight;
+canvas.width = 16 * gridWidth;
 
 /*
 Type 0: Background;
@@ -59,7 +61,7 @@ class object
                 }
             }
 
-            console.log(Math.round(this.lerpedX) + " " + Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) + " " + Math.round(this.lerpedY) + " " + Math.round(lerp(this.lerpedY, this.x * 16, 0.1)) + " " + this.moving);
+            //console.log(Math.round(this.lerpedX) + " " + Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) + " " + Math.round(this.lerpedY) + " " + Math.round(lerp(this.lerpedY, this.x * 16, 0.1)) + " " + this.moving);
 
             this.lerpedX = lerp(this.lerpedX, this.x * 16, 0.1);
             this.lerpedY = lerp(this.lerpedY, this.y * 16, 0.1);
@@ -72,9 +74,6 @@ class object
 };
 
 ///// LOADING /////
-
-const background = new Image();
-background.src = "images/gameAssets/metal_plate.png";
 
 const player = new object(0, 0, 7, "character");
 
@@ -127,15 +126,11 @@ function lerp(start, end, t)
 
 ///// UPDATE /////
 
-let objLLen = objectList.length, pat = ctx.createPattern(background, 'repeat');
+let objLLen = objectList.length;
 
 function draw()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.rect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = pat;
-    ctx.fill();
 
     for (var i = 0; i < objLLen; i++)
     {

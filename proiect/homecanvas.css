@@ -2,16 +2,40 @@
     font-family: Retro_Gaming;
 }
 
-body{
+body {
+    background: #263030 url(images/gameAssets/tiles.png);
+    background-size: 80px;
+    color: #263030;
     image-rendering: pixelated;
-    background: #263030;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.gradient {
+    background-image: linear-gradient(180deg, #263030, #060909);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 90%;
+}
+
+.vignette {
+    background-image: url(images/vignette.png);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 #canvas {
     width: auto;
-    height: 480px;
+    height: 400px;
     position: absolute;
-    top: 80px;
+    top: 120px;
     left: 40px;
     background-color: #000;
     z-index: 1;

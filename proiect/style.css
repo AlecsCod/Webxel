@@ -5,7 +5,7 @@
 }
 
 body {
-    background: white url(images/metal_plate.png);
+    background: white url(images/gameAssets/metal_plate.png);
     background-position: center;
     background-size: 80px;
     color: white;

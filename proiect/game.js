@@ -169,6 +169,7 @@ function movePlayer(e)
 {
     if (!player.moving)
     {
+        player.moving = true;
         player.frameX = 0;
         switch(e.keyCode)
         {

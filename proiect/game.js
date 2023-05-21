@@ -19,7 +19,6 @@ Type 7: Player.
 (Array-ul objectList de mai jos va fi sortat în funcție de objType pentru rendering fără probleme vizuale pe canvas)
 */
 
-var objectNr = 0;
 const objectList = [];
 
 class object
@@ -33,11 +32,11 @@ class object
         this.objType = objType;
         this.frameX = 0;
         this.frameY = 0;
-        objectList.push(this);
         this.lerpedX = x * 16;
         this.lerpedY = y * 16;
         this.moving = false;
         this.animating = false;
+        objectList.push(this);
     }
     /*checkAdjacency() // PUSHABLE OBJECT CONDITION CHECKER
     {
@@ -100,9 +99,14 @@ class object
     }
 };
 
+class char extends object
+{
+    
+}
+
 ///// LOADING /////
 
-const player = new object(0, 0, 7, "character");
+const player = new char(0, 0, 7, "character");
 
 console.log(player.constructor.name);
 

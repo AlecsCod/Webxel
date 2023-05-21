@@ -19,7 +19,24 @@ Type 7: Player.
 (Array-ul objectList de mai jos va fi sortat în funcție de objType pentru rendering fără probleme vizuale pe canvas)
 */
 
-const objectList = [];
+var objectList = [],
+soundList =
+[
+    "music.mp3",
+    "pickupCoin.wav",
+    "reset.wav",
+    "walk.wav",
+    "weird.wav"
+],
+soundBank = [];
+
+for (var i = 0; i < soundList.length; i++)
+{
+    var sound = new Audio();
+    sound.src = "sounds/" + soundList[i];
+    soundBank.push(sound);
+}
+soundBank[0].loop = true;
 
 class object
 {
@@ -76,6 +93,8 @@ class object
                             {
                                 this.frameX = 0;
                             }
+                            
+                            soundBank[3].play();
                         }
                     }
                     // ^^^ WEBXEL CHAR/PLAYER ANIMATION CODE ^^^
@@ -104,7 +123,7 @@ class char extends object
     
 }
 
-///// LOADING /////
+///// LOADING OBJECTS /////
 
 const player = new char(0, 0, 7, "character");
 
@@ -114,6 +133,8 @@ objectList.sort((a, b) =>
 {
     return a.objType - b.objType;
 });
+
+soundBank[0].play();
 
 ///// DIVERSE FUNCȚII /////
 

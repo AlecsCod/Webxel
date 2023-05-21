@@ -38,21 +38,21 @@ for (var i = 0; i < soundList.length; i++)
 }
 soundBank[0].loop = true;
 
+var muteButton = document.getElementById("muteButton");
+var audioMuted = false;
+
 class object
 {
-    constructor(x, y, objType, img)
+    constructor(x, y, img)
     {
         this.img = new Image();
         this.img.src = "images/gameAssets/" + img + ".png";
         this.x = x;
         this.y = y;
-        this.objType = objType;
         this.frameX = 0;
         this.frameY = 0;
         this.lerpedX = x * 16;
         this.lerpedY = y * 16;
-        this.moving = false;
-        this.animating = false;
         objectList.push(this);
     }
     /*checkAdjacency() // PUSHABLE OBJECT CONDITION CHECKER
@@ -61,71 +61,78 @@ class object
     }*/
     updateObj()
     {
-        if (this.objType == 3 || this.objType == 7) // OBJECT MOVEMENT
-        {
-            this.lerpedX = lerp(this.lerpedX, this.x * 16, 0.1);
-            this.lerpedY = lerp(this.lerpedY, this.y * 16, 0.1);
-
-            if (Math.round(this.lerpedX) != this.x * 16 || Math.round(this.lerpedY) != this.y * 16)
-            {
-                this.moving = true;
-            }
-            else
-            {
-                this.moving = false;
-            }
-        }
-
-        switch (this.objType)
-        {
-            case 7: // PLAYER
-                {
-                    if ((Math.round(this.lerpedX) != Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) || 
-                    Math.round(this.lerpedY) != Math.round(lerp(this.lerpedY, this.y * 16, 0.1))))
-                    {
-                        if (Math.round(this.lerpedX) % 2 != 0 || Math.round(this.lerpedY) % 2 != 0)
-                        {
-                            if (this.frameX != 3 && this.moving)
-                            {
-                                this.frameX++;
-                            }
-                            else
-                            {
-                                this.frameX = 0;
-                            }
-                            
-                            soundBank[3].play();
-                        }
-                    }
-                    // ^^^ WEBXEL CHAR/PLAYER ANIMATION CODE ^^^
-
-                    if (!this.moving) // Fixes the animation stuck on walk issue :O
-                    {
-                        setTimeout(() =>
-                        {
-                            if (!this.moving)
-                            {
-                                this.frameX = 0;
-                                this.animating = false;
-                            }
-                        }, 100);
-                    }
-                }
-        }
-
         ctx.drawImage(this.img, 16 * this.frameX, 16 * this.frameY, 16, 16, Math.round(this.lerpedX), Math.round(this.lerpedY), 16, 16);
-        // ^^^ RENDER EACH OBJECT ^^^
     }
 };
 
-class char extends object
+class plrObj extends object
 {
-    
+    constructor(x, y)
+    {
+        super(x, y, "character");
+        this.moving = false;
+    }
+    updateObj()
+    {
+        this.lerpedX = lerp(this.lerpedX, this.x * 16, 0.1);
+        this.lerpedY = lerp(this.lerpedY, this.y * 16, 0.1);
+
+        if (Math.round(this.lerpedX) != this.x * 16 || Math.round(this.lerpedY) != this.y * 16)
+        {
+            this.moving = true;
+        }
+        else
+        {
+            this.moving = false;
+        }
+
+        if ((Math.round(this.lerpedX) != Math.round(lerp(this.lerpedX, this.x * 16, 0.1)) || 
+        Math.round(this.lerpedY) != Math.round(lerp(this.lerpedY, this.y * 16, 0.1))))
+        {
+            if (Math.round(this.lerpedX) % 2 != 0 || Math.round(this.lerpedY) % 2 != 0)
+            {
+                if (this.frameX != 3 && this.moving)
+                {
+                    this.frameX++;
+                }
+                else
+                {
+                    this.frameX = 0;
+                }
+                
+                soundBank[3].play();
+            }
+        }
+        // ^^^ WEBXEL CHAR/PLAYER ANIMATION CODE ^^^
+
+        if (!this.moving) // Fixes the animation stuck on walk issue :O
+        {
+            setTimeout(() =>
+            {
+                if (!this.moving)
+                {
+                    this.frameX = 0;
+                }
+            }, 100);
+        }
+        super.updateObj();
+    }
 }
+
+/*class pushObj extends object
+{
+    updateObj()
+    {
+        super.updateObj();
+    }
+    checkAdjacency()
+    {
+    }
+}*/
 
 ///// LOADING OBJECTS /////
 
-const player = new char(0, 0, 7, "character");
+const player = new plrObj(0, 0);
 
 console.log(player.constructor.name);
 
@@ -139,6 +146,24 @@ soundBank[0].play();
 ///// DIVERSE FUNCȚII /////
 
 window.addEventListener("keydown", movePlayer, false);
+
+muteButton.addEventListener("click", function()
+{
+    if (audioMuted)
+    {
+      audioMuted = false;
+      muteButton.style = "background-position-x: 0px";
+    }
+    else
+    {
+      audioMuted = true;
+      muteButton.style = "background-position-x: -40px";
+    }
+    for (var i = 0; i < soundList.length; i++)
+    {
+        soundBank[i].muted = audioMuted;
+    }
+});
 
 function movePlayer(e)
 {

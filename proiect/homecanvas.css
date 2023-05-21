@@ -40,6 +40,21 @@ body {
     background-color: #000;
     z-index: 1;
  }
+
+ #muteButton {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(images/volume_toggle.png);
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    border: none;
+    z-index: 2;
+    top: 500px;
+    left: 660px;
+ }
  
  @font-face {
     font-family: Retro_Gaming;

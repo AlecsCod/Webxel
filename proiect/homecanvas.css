@@ -46,7 +46,7 @@ body {
  #muteButton {
     width: 40px;
     height: 40px;
-    position: relative;
+    position: absolute;
     background-color: rgba(0, 0, 0, 0);
     background-image: url(images/volume_toggle.png);
     background-size: cover;
@@ -56,6 +56,28 @@ body {
     z-index: 2;
     top: 500px;
     left: 660px;
+ }
+
+ #scoreDisplay {
+    width: auto;
+    position: absolute;
+    font-size: 12px;
+    color: #fff;
+    z-index: 2;
+    top: 514px;
+    left: 40px;
+
+    text-shadow:    -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000,
+                    -1px 0px 0px #000, 1px 0px 0px #000, 0px -1px 0px #000, 0px 1px 0px #000;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    scale: 1.25;
  }
  
  @font-face {

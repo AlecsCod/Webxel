@@ -28,7 +28,13 @@ soundList =
     "walk.wav",
     "weird.wav"
 ],
-soundBank = [];
+soundBank = [],
+gemArray = [],
+frameSpeedHandler = 0,
+muteButton = document.getElementById("muteButton"),
+scoreDisplay = document.getElementById("scoreDisplay"),
+audioMuted = false,
+collectedGems = 0;
 
 for (var i = 0; i < soundList.length; i++)
 {
@@ -37,9 +43,6 @@ for (var i = 0; i < soundList.length; i++)
     soundBank.push(sound);
 }
 soundBank[0].loop = true;
-
-var muteButton = document.getElementById("muteButton");
-var audioMuted = false;
 
 class object
 {
@@ -99,8 +102,6 @@ class plrObj extends object
                 {
                     this.frameX = 0;
                 }
-                
-                soundBank[3].play();
             }
         }
         // ^^^ WEBXEL CHAR/PLAYER ANIMATION CODE ^^^
@@ -115,6 +116,47 @@ class plrObj extends object
                 }
             }, 100);
         }
+        super.updateObj();
+    }
+    moveMisc() // Anim. reset, sunet
+    {
+        this.moving = true;
+        this.frameX = 0;
+        playSound(3);
+    }
+}
+
+class gemObj extends object
+{
+    constructor(x, y)
+    {
+        super(x, y, "gem");
+        this.collected = false;
+        gemArray.push(this);
+    }
+    updateObj()
+    {
+        if (frameSpeedHandler % 8 == 0)
+        {
+            if (this.frameX != 15)
+            {
+                this.frameX++;
+            }
+            else
+            {
+                this.frameX = 0;
+            }
+        }
+
+        if (player.x == this.x && player.y == this.y && !this.collected)
+        {
+            collectedGems++;
+            updateScore();
+            playSound(1);
+            this.collected = true;
+            this.frameY = 1;
+        }
+
         super.updateObj();
     }
 }
@@ -134,14 +176,20 @@ class plrObj extends object
 
 const player = new plrObj(0, 0);
 
-console.log(player.constructor.name);
+for (var i = 3; i <= 6; i++)
+{
+    for (var j = 2; j <= 4; j++)
+    {
+        new gemObj(i*2, j);
+    }
+}
 
-objectList.sort((a, b) =>
+/*objectList.sort((a, b) =>
 {
     return a.objType - b.objType;
-});
+});*/
 
-soundBank[0].play();
+//soundBank[0].play();
 
 ///// DIVERSE FUNCȚII /////
 
@@ -169,8 +217,6 @@ function movePlayer(e)
 {
     if (!player.moving)
     {
-        player.moving = true;
-        player.frameX = 0;
         switch(e.keyCode)
         {
             case 37: // STÂNGA
@@ -178,12 +224,14 @@ function movePlayer(e)
                 {
                     player.x--;
                     player.frameY = 1;
+                    player.moveMisc();
                 }
                 break;
             case 38: // SUS
                 if (player.y - 1 >= 0)
                 {
                     player.y--;
+                    player.moveMisc();
                 }
                 break;
             case 39: // DREAPTA
@@ -191,30 +239,57 @@ function movePlayer(e)
                 {
                     player.x++;
                     player.frameY = 0;
+                    player.moveMisc();
                 }
                 break;
             case 40: // JOS
                 if (player.y + 1 <= canvas.height / 16 - 1)
                 {
                     player.y++;
+                    player.moveMisc();
                 }
                 break;  
         }
     }
 } 
 
+function updateScore()
+{
+    scoreDisplay.innerHTML = collectedGems + "/" + gemArray.length + " Gems";
+}
+
+function playSound(number)
+{
+    soundBank[number].currentTime = 0;
+    soundBank[number].play();
+}
+
 function lerp(start, end, t)
 {
     return start * (1 - t) + end * t;
 }
 
-///// UPDATE /////
+///// DRAW /////
+
+if(gemArray[0] != null)
+{
+    updateScore();
+}
 
 let objLLen = objectList.length;
 
 function draw()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (frameSpeedHandler % 16 != 0)
+    {
+        frameSpeedHandler++;
+    }
+    else
+    {
+        frameSpeedHandler = 1;
+    }
 
     for (var i = 0; i < objLLen; i++)
     {

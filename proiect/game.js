@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-var gridHeight = 10, gridWidth = 16;
+let gridHeight = 10, gridWidth = 16;
 
 canvas.height = 16 * gridHeight;
 canvas.width = 16 * gridWidth;
@@ -19,7 +19,7 @@ Type 7: Player.
 (Array-ul objectList de mai jos va fi sortat în funcție de objType pentru rendering fără probleme vizuale pe canvas)
 */
 
-var objectList = [],
+let objectList = [],
 soundList =
 [
     "music.mp3",
@@ -194,6 +194,11 @@ for (var i = 3; i <= 6; i++)
 ///// DIVERSE FUNCȚII /////
 
 window.addEventListener("keydown", movePlayer, false);
+
+window.addEventListener("click", function()
+{
+    soundBank[0].play();
+});
 
 muteButton.addEventListener("click", function()
 {

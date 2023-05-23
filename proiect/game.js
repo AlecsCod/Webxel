@@ -30,6 +30,7 @@ soundList =
 ],
 soundBank = [],
 gemArray = [],
+pushableArray = [],
 frameSpeedHandler = 0,
 muteButton = document.getElementById("muteButton"),
 scoreDisplay = document.getElementById("scoreDisplay"),
@@ -56,6 +57,7 @@ class object
         this.frameY = 0;
         this.lerpedX = x * 16;
         this.lerpedY = y * 16;
+        this.solidObject = false;
         objectList.push(this);
     }
     /*checkAdjacency() // PUSHABLE OBJECT CONDITION CHECKER
@@ -74,6 +76,7 @@ class plrObj extends object
     {
         super(x, y, "character");
         this.moving = false;
+        this.solidObject = true;
     }
     updateObj()
     {
@@ -124,6 +127,22 @@ class plrObj extends object
         this.frameX = 0;
         playSound(3);
     }
+    blockedCheck(direction) // Verifică dacă personajul jucătorului este blocat de un obiect solid (inclusiv marginile canvas-ului) la o anumită direcție
+    {
+        for(var i = 0; i < objectList.length; i++)
+            if(objectList[i].solidObject)
+            {
+                if(direction == 1 && ((objectList[i].x == this.x - 1 && objectList[i].y == this.y) || this.x == 0)) // LA STÂNGA
+                    return true;
+                if(direction == 2 && ((objectList[i].y == this.y - 1 && objectList[i].x == this.x) || this.y == 0)) // DEASUPRA
+                    return true;
+                if(direction == 3 && ((objectList[i].x == this.x + 1 && objectList[i].y == this.y) || this.x == gridWidth - 1)) // LA DREAPTA
+                    return true;
+                if(direction == 4 && ((objectList[i].y == this.y + 1 && objectList[i].x == this.x) || this.y == gridHeight - 1)) // DEDESUBT
+                    return true;
+            }
+        return false;
+    }
 }
 
 class gemObj extends object
@@ -161,20 +180,58 @@ class gemObj extends object
     }
 }
 
-/*class pushObj extends object
+class pushObj extends object
 {
+    constructor(x, y)
+    {
+        super(x, y, "box");
+        this.collected = false;
+        this.solidObject = true;
+        pushableArray.push(this);
+    }
     updateObj()
     {
+        this.lerpedX = lerp(this.lerpedX, this.x * 16, 0.1);
+        this.lerpedY = lerp(this.lerpedY, this.y * 16, 0.1);
+
         super.updateObj();
     }
-    checkAdjacency()
+    plrAdjacency() // Verifică dacă personajul jucătorului este adiacent cu obiectul și la ce direcție
     {
+        if(player.x == this.x - 1 && player.y == this.y) // PLR. LA STÂNGA
+            return 1;
+        if(player.y == this.y - 1 && player.x == this.x) // PLR. DEASUPRA
+            return 2;
+        if(player.x == this.x + 1 && player.y == this.y) // PLR. LA DREAPTA
+            return 3;
+        if(player.y == this.y + 1 && player.x == this.x) // PLR. DEDESUBT
+            return 4;
+        return 0;
     }
-}*/
+    blockedCheck(direction) // Verifică dacă obiectul este blocat de un obiect solid (inclusiv marginile canvas-ului) la o anumită direcție
+    {
+        for(var i = 0; i < objectList.length; i++)
+            if(objectList[i].solidObject)
+            {
+                if(direction == 1 && ((objectList[i].x == this.x - 1 && objectList[i].y == this.y) || this.x == 0)) // LA STÂNGA
+                    return true;
+                if(direction == 2 && ((objectList[i].y == this.y - 1 && objectList[i].x == this.x) || this.y == 0)) // DEASUPRA
+                    return true;
+                if(direction == 3 && ((objectList[i].x == this.x + 1 && objectList[i].y == this.y) || this.x == gridWidth - 1)) // LA DREAPTA
+                    return true;
+                if(direction == 4 && ((objectList[i].y == this.y + 1 && objectList[i].x == this.x) || this.y == gridHeight - 1)) // DEDESUBT
+                    return true;
+            }
+        return false;
+    }
+}
 
 ///// LOADING OBJECTS /////
 
 const player = new plrObj(0, 0);
+
+const box = new pushObj(3, 3);
+const box2 = new pushObj(5, 4);
 
 for (var i = 3; i <= 6; i++)
 {
@@ -225,7 +282,8 @@ function movePlayer(e)
         switch(e.keyCode)
         {
             case 37: // STÂNGA
-                if (player.x - 1 >= 0)
+                movePushable(3);
+                if(!player.blockedCheck(1))
                 {
                     player.x--;
                     player.frameY = 1;
@@ -233,22 +291,26 @@ function movePlayer(e)
                 }
                 break;
             case 38: // SUS
-                if (player.y - 1 >= 0)
+                movePushable(4);
+                if(!player.blockedCheck(2))
                 {
                     player.y--;
                     player.moveMisc();
                 }
                 break;
             case 39: // DREAPTA
-                if (player.x + 1 <= canvas.width / 16 - 1)
+                movePushable(1);
+                if(!player.blockedCheck(3))
                 {
                     player.x++;
                     player.frameY = 0;
                     player.moveMisc();
+                    
                 }
                 break;
             case 40: // JOS
-                if (player.y + 1 <= canvas.height / 16 - 1)
+                movePushable(2);
+                if(!player.blockedCheck(4))
                 {
                     player.y++;
                     player.moveMisc();
@@ -272,6 +334,32 @@ function playSound(number)
 function lerp(start, end, t)
 {
     return start * (1 - t) + end * t;
+}
+
+function movePushable(fromDir)
+{
+    if (pushableArray[0] != null) for (var i = 0; i < pushableArray.length; i++)
+    {
+        if (pushableArray[i].plrAdjacency() == fromDir) switch (pushableArray[i].plrAdjacency())
+        {
+            case 0:
+                break;
+            case 1:
+                if (fromDir == 1 && !pushableArray[i].blockedCheck(3)) // SPRE DREAPTA
+                    pushableArray[i].x++;
+            case 2:
+                if (fromDir == 2 && !pushableArray[i].blockedCheck(4)) // ÎN JOS
+                    pushableArray[i].y++;
+            case 3:
+                if (fromDir == 3 && !pushableArray[i].blockedCheck(1)) // SPRE STÂNGA
+                    pushableArray[i].x--;
+            case 4:
+                if (fromDir == 4 && !pushableArray[i].blockedCheck(2)) // ÎN SUS
+                    pushableArray[i].y--;
+            default:
+                break;
+        }
+    }
 }
 
 ///// DRAW /////

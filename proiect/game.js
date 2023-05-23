@@ -230,13 +230,11 @@ class pushObj extends object
 
 const player = new plrObj(0, 0);
 
-const box = new pushObj(3, 3);
-const box2 = new pushObj(5, 4);
-
-for (var i = 3; i <= 6; i++)
+for (var i = 2; i <= 6; i++)
 {
     for (var j = 2; j <= 4; j++)
     {
+        new pushObj(i*2, j);
         new gemObj(i*2, j);
     }
 }

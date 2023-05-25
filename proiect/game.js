@@ -7,16 +7,17 @@ canvas.height = 16 * gridHeight;
 canvas.width = 16 * gridWidth;
 
 /*
-Type 0: Background;
+Type 0: Background/Undefined;
 Type 1: Damage (reset) Object;
-Type 2: Pressure Plate;
-Type 3: Pushable/Weighted Object;
+Type 2: Button;
+Type 3: Pushable Object;
 Type 4: Obstacle/Barrier;
-Type 5: On/Off Obstacle;
+Type 5: Gate;
 Type 6: Goal;
-Type 7: Player.
+Type 7: Gem;
+Type 8: Player.
 
-(Array-ul objectList de mai jos va fi sortat în funcție de objType pentru rendering fără probleme vizuale pe canvas)
+(Array-ul objectList de mai jos va fi sortat în funcție de zIndex pentru rendering fără probleme vizuale pe canvas)
 */
 
 let objectList = [],
@@ -26,11 +27,13 @@ soundList =
     "pickupCoin.wav",
     "reset.wav",
     "walk.wav",
-    "weird.wav"
+    "weird.wav",
+    "buttonClick.wav"
 ],
 soundBank = [],
 gemArray = [],
 pushableArray = [],
+buttonArray = [],
 frameSpeedHandler = 0,
 muteButton = document.getElementById("muteButton"),
 scoreDisplay = document.getElementById("scoreDisplay"),
@@ -47,8 +50,9 @@ soundBank[0].loop = true;
 
 class object
 {
-    constructor(x, y, img)
+    constructor(x, y, img, zIndex)
     {
+        this.zIndex = zIndex;
         this.img = new Image();
         this.img.src = "images/gameAssets/" + img + ".png";
         this.x = x;
@@ -74,7 +78,7 @@ class plrObj extends object
 {
     constructor(x, y)
     {
-        super(x, y, "character");
+        super(x, y, "character", 8);
         this.moving = false;
         this.solidObject = true;
     }
@@ -149,7 +153,7 @@ class gemObj extends object
 {
     constructor(x, y)
     {
-        super(x, y, "gem");
+        super(x, y, "gem", 7);
         this.collected = false;
         gemArray.push(this);
     }
@@ -184,7 +188,7 @@ class pushObj extends object
 {
     constructor(x, y)
     {
-        super(x, y, "box");
+        super(x, y, "box", 3);
         this.collected = false;
         this.solidObject = true;
         pushableArray.push(this);
@@ -226,6 +230,46 @@ class pushObj extends object
     }
 }
 
+class buttonObj extends object
+{
+    constructor(x, y)
+    {
+        super(x, y, "button", 2);
+        this.active = false;
+        buttonArray.push(this);
+    }
+    updateObj()
+    {
+        if (this.checkPressed())
+        {
+            if (!this.active)
+            {
+                this.active = true;
+                playSound(5);
+            }
+        }
+        else this.active = false
+
+        super.updateObj();
+    }
+    checkPressed()
+    {
+        var pressed = false;
+        if (player.x == this.x && player.y == this.y)
+        {
+            pressed = true;
+        }
+        else for(var i = 0; i < pushableArray.length; i++)
+        {
+            if (pushableArray[i].x == this.x && pushableArray[i].y == this.y)
+            {
+                pressed = true;
+            }
+        }
+        return pressed;
+    }
+}
+
 ///// LOADING OBJECTS /////
 
 const player = new plrObj(0, 0);
@@ -238,6 +282,8 @@ for (var i = 2; i <= 6; i++)
         new gemObj(i*2, j);
     }
 }
+
+new buttonObj(2, 2);
 
 /*objectList.sort((a, b) =>
 {
@@ -361,6 +407,11 @@ function movePushable(fromDir)
 }
 
 ///// DRAW /////
+
+objectList.sort((a, b) =>
+{
+    return a.zIndex - b.zIndex;
+});
 
 if(gemArray[0] != null)
 {

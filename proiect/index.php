@@ -1,14 +1,14 @@
-<?php 
+<?php
 session_start();
 
-	include("config.php");
-	include("functions.php");
+include("config.php");
+include("functions.php");
 
-	$user_data = check_login($con);
-
-?>
+$user_data = check_login($con);
 
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -30,8 +30,8 @@ session_start();
    <nav id="topnav">
       <img src="images/logo.png" class="logo" height="40px">
       <div class="buttons">
-         <a id="about" class="nav-link" href="login.php">Log in</a>
-         <a id="about" class="nav-link" href="registration.php">Register</a>
+         <a id="about" class="nav-link" href="logout.php">Log out</a>
+         <a id="about" class="nav-link"> <?php echo $user_data['user_name']; ?></a>
       </div>
    </nav>
    <canvas id="canvas"></canvas>

@@ -30,8 +30,8 @@ session_start();
    <nav id="topnav">
       <img src="images/logo.png" class="logo" height="40px">
       <div class="buttons">
-         <a id="about" class="nav-link" href="login.html">Log in</a>
-         <a id="about" class="nav-link" href="registration.html">Register</a>
+         <a id="about" class="nav-link" href="login.php">Log in</a>
+         <a id="about" class="nav-link" href="registration.php">Register</a>
       </div>
    </nav>
    <canvas id="canvas"></canvas>

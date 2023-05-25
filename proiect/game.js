@@ -270,6 +270,36 @@ class buttonObj extends object
     }
 }
 
+class gateObj extends object
+{
+    constructor(x, y)
+    {
+        super(x, y, "gate", 5);
+        this.solidObject = true;
+    }
+    updateObj()
+    {
+        var check = 0;
+
+        for(var i = 0; i < buttonArray.length; i++)
+            if (buttonArray[i].active)
+                check++;
+        
+        if (check == buttonArray.length)
+        {
+            this.solidObject = false;
+            this.frameY = 1;
+        }
+        else
+        {
+            this.solidObject = true;
+            this.frameY = 0;
+        }
+
+        super.updateObj();
+    }
+}
+
 ///// LOADING OBJECTS /////
 
 const player = new plrObj(0, 0);
@@ -284,6 +314,9 @@ for (var i = 2; i <= 6; i++)
 }
 
 new buttonObj(2, 2);
+new buttonObj(3, 4);
+
+new gateObj(7, 7);
 
 /*objectList.sort((a, b) =>
 {

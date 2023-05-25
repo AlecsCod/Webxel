@@ -1,9 +1,4 @@
 <?php
-echo "<style>
-            
-        </style>"
-?>
-<?php
 
 session_start();
 

@@ -158,3 +158,12 @@ span {
     font-family: Retro_Gaming;
     src: url(Retro\ Gaming.ttf);
 }
+.error-msg{
+    display: block;
+    width: 100%;
+    padding:10px 0;
+    margin:10px 0;
+    background-color: crimson;
+    font-size: 20px;
+    color:#fff;
+ }

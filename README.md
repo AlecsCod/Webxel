@@ -29,7 +29,7 @@ https://www.dafont.com/retro-gaming.font (font site)
 https://sfxr.me (efecte sonore)
 
 
-# Ce am realizat noi:
+# Ce am realizat noi
 Codul de JavaScript, imagini, muzică și frontend realizate de Alex.
 
 Codul de PHP și backend realizate de Ali.

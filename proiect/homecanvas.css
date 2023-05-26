@@ -40,7 +40,7 @@ option {
     height: 400px;
     position: absolute;
     top: 120px;
-    left: 40px;
+    left: 160px;
     background-color: #000;
     background-image: url(images/gameAssets/tiles.png);
     background-size: 40px;
@@ -59,7 +59,7 @@ option {
     border: none;
     z-index: 2;
     top: 500px;
-    left: 660px;
+    left: 780px;
  }
 
  #scoreDisplay {
@@ -69,25 +69,19 @@ option {
     color: #fff;
     z-index: 2;
     top: 514px;
-    left: 40px;
-
-    text-shadow:    -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000,
+    left: 160px;
+    text-shadow: -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000,
                     -1px 0px 0px #000, 1px 0px 0px #000, 0px -1px 0px #000, 0px 1px 0px #000;
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    
     scale: 1.25;
  }
 
  .upload-field{
     background-color: white;
     top: 120px;
-    left: 760px;
+    left: 880px;
     width: 400px;
     height: 400px;
     position: absolute;

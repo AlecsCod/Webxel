@@ -27,10 +27,10 @@ $user_data = check_login($con);
 
    <div class="upload-field">
       <input class="file " type="file" id="myFile" name="filename">
-      <br>
-      <button type="export" class="export-btn">Save as JSON file</button>
-      <br>
-      <select name="options" id="options">
+
+      <button class="export-btn" type="export" class="export-btn">Save as JSON file</button>
+
+      <select class="option-btn" name="options" id="options">
          <option value="8">Player</option>
          <option value="7">Gem</option>
          <option value="5">Gate</option>
@@ -38,16 +38,16 @@ $user_data = check_login($con);
          <option value="3">Box</option>
          <option value="2">Button</option>
       </select>
-      <br>
-      <p>x:</p>
-      <input type="text" id="xInput" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
-
-      <p>y:</p>
+      <div class="xy-btn">
+         <p>x:</p>
+         <input type="text" id="xInput" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
+         <p>y:</p>
+   
       <input type="text" id="yInput" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
-
-      <button type="add" id="addButton" class="add-btn">Add</button>
-      <button type="remove" id="removeButton" class="remove-btn">Remove</button>
-      <button id="testButton">Test</button>
+      </div>
+      <button class="add-btn" type="add" id="addButton" class="add-btn">Add</button>
+      <button class="remove-btn" type="remove" id="removeButton" class="remove-btn">Remove</button>
+      <button class="test-btn" id="testButton">Test</button>
    </div>
 
    <div class="gradient"></div>

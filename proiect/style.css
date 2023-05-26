@@ -158,7 +158,14 @@ span {
     margin-top: -20px;
 }
 
+
 @font-face {
     font-family: Retro_Gaming;
     src: url(Retro\ Gaming.ttf);
+}
+
+.error {
+    color: red;
+    background-color: #e0e0e0;
+    text-align: center;
 }

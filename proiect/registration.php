@@ -4,7 +4,6 @@ session_start();
 include("config.php");
 include("functions.php");
 
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //something was posted
     $user_name = $_POST['user_name'];
@@ -21,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: login.php");
         die;
     } else {
-        echo "Please enter some valid information!";
+        echo "<p class='Error'>Please enter some valid information!</p>";
     }
 }
 ?>

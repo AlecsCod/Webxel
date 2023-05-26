@@ -9,9 +9,12 @@ Editorul de nivel prezintă o interfață cu o grilă în care utilizatorul poat
 Materiale care nu au fost facute de noi:
 
 https://codepen.io/YoannM/pen/yyExEO (pentru login/register button)
+
 https://www.dafont.com/retro-gaming.font (font site)
 
 
 Tot codul de JavaScript a fost realizat de Alex.
+
 Codul de PHP a fost facut de Ali.
+
 CSS & HTML impreuna :)

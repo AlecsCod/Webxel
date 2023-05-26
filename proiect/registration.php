@@ -24,6 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 ?>
+<style>
+    .error {
+        color: red;
+        background-color: #e0e0e0;
+        text-align: center;
+    }
+</style>
 <!DOCTYPE html>
 <html>
 

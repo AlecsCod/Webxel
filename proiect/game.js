@@ -344,6 +344,9 @@ for (var i = 1; i <= 4; i++)
     }
 }
 
+console.log(JSON.parse(JSON.stringify(objectList[2])));
+console.log(objectList[2]);
+
 new gateObj(12, 7);
 
 /*objectList.sort((a, b) =>

@@ -24,9 +24,9 @@ $user_data = check_login($con);
 </head>
 
 <body>
+
    <div class="upload-field">
-      <input type="file" id="myFile" name="filename">
-      <input type="submit">
+      <input class="file " type="file" id="myFile" name="filename">
       <br>
       <button type="export" class="export-btn">Save as JSON file</button>
       <br>

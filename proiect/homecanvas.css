@@ -98,3 +98,88 @@ body {
     font-family: Retro_Gaming;
     src: url(Retro\ Gaming.ttf);
 }
+.file{
+    position: relative;
+    display: inline-block;
+    margin: auto;
+ display: flex;
+}
+.export-btn{
+    top: 0px;
+    left: 140px;
+    margin: auto;
+    display:inline-block;
+    bottom: 50px;
+    position: relative;
+	background-color:#000000;
+	border:1px solid #241d13;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+	padding:9px 23px;
+	text-align: center;
+}
+.option-btn{
+    top: 15px;
+    width: 150px;
+    position: relative;
+    display: inline-block;
+    margin: auto;
+    display: flex;
+}
+.add-btn{
+    left: 50px;
+    top: 80px;
+    margin: auto;
+    bottom: 50px;
+    position: relative;
+	background-color:#000000;
+	border:1px solid #241d13;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+	padding:9px 23px;
+	text-align: center;
+}
+.remove-btn{
+    left: 140px;
+    top: 80px;
+    margin: auto;
+    display:inline-block;
+    bottom: 50px;
+    position: relative;
+	background-color:#000000;
+	border:1px solid #241d13;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+	padding:9px 23px;
+	text-align: center;
+}
+.test-btn{
+        top: 150px;
+    right: 59px;
+    margin: auto;
+    display:inline-block;
+    bottom: 50px;
+    position: relative;
+	background-color:#000000;
+	border:1px solid #241d13;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+	padding:9px 23px;
+	text-align: center;
+}
+.xy-btn{
+    top: 50px;
+    left:130px;
+    display: flex;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    
+}

@@ -24,9 +24,11 @@ https://codepen.io/YoannM/pen/yyExEO (CSS pentru login/register button)
 
 https://www.dafont.com/retro-gaming.font (font site)
 
+https://sfxr.me (SFX)
+
 
 # Ce am realizat noi:
-Codul de JavaScript, imagini și frontend realizate de Alex.
+Codul de JavaScript, imagini, muzică și frontend realizate de Alex.
 
 Codul de PHP și backend realizate de Ali.
 

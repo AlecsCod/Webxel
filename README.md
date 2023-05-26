@@ -6,15 +6,15 @@ Webxel este un site web ce oferă utilizatorului posibilitatea de a juca un joc 
 Editorul de nivel prezintă o interfață cu o grilă în care utilizatorul poate plasa obiecte cu ajutorul meniului din stânga. Odată făcut, nivelul creat poate fi salvat pe computer în format JSON ce poate fi importat din nou în editor.
 
 
-Materiale care nu au fost facute de noi:
+Materiale ce nu au fost făcute de noi:
 
-https://codepen.io/YoannM/pen/yyExEO (pentru login/register button)
+https://codepen.io/YoannM/pen/yyExEO (CSS pentru login/register button)
 
 https://www.dafont.com/retro-gaming.font (font site)
 
 
 Tot codul de JavaScript a fost realizat de Alex.
 
-Codul de PHP a fost facut de Ali.
+Codul de PHP a fost făcut de Ali.
 
-CSS & HTML impreuna :)
+CSS & HTML împreună :)

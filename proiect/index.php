@@ -30,16 +30,23 @@ $user_data = check_login($con);
       <br>
       <button type="export" class="export-btn">Save as JSON file</button>
       <br>
-      <select name="options" id="options"></select>
+      <select name="options" id="options">
+         <option value="8">Player</option>
+         <option value="7">Gem</option>
+         <option value="5">Gate</option>
+         <option value="4">Wall</option>
+         <option value="3">Box</option>
+         <option value="2">Button</option>
+      </select>
       <br>
       <p>x:</p>
-      <input type="text" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
+      <input type="text" id="xInput" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
 
       <p>y:</p>
-      <input type="text" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
+      <input type="text" id="yInput" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
 
-      <button type="add" class="add-btn">Add</button>
-      <button type="remove" class="remove-btn">Remove</button>
+      <button type="add" id="addButton" class="add-btn">Add</button>
+      <button type="remove" id="removeButton" class="remove-btn">Remove</button>
       <button id="testButton">Test</button>
    </div>
 

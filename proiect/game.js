@@ -37,6 +37,11 @@ pushableArray = [],
 buttonArray = [],
 frameSpeedHandler = 0,
 muteButton = document.getElementById("muteButton"),
+addButton = document.getElementById("addButton"),
+removeButton = document.getElementById("removeButton"),
+xInput = document.getElementById("xInput"),
+yInput = document.getElementById("yInput"),
+options = document.getElementById("options"),
 testButton = document.getElementById("testButton"),
 scoreDisplay = document.getElementById("scoreDisplay"),
 audioMuted = false,
@@ -366,6 +371,36 @@ new gateObj(12, 7);
 
 window.addEventListener("keydown", movePlayer, false);
 
+addButton.addEventListener("click", function()
+{
+    if(!playing)
+    {
+        switch (parseInt(options.value))
+        {
+            case 8:
+                player.x = player.initX = xInput.value; 
+                player.y = player.initY = yInput.value;
+                break;
+            case 7:
+                new gemObj(xInput.value, yInput.value);
+                sortObj();
+                break;
+            case 5:
+                new gateObj(xInput.value, yInput.value);
+                break;
+            case 4:
+                new wallObj(xInput.value, yInput.value);
+                break;
+            case 3:
+                new pushObj(xInput.value, yInput.value);
+                break;
+            case 2:
+                new buttonObj(xInput.value, yInput.value);
+                break;
+        }
+    }
+});
+
 testButton.addEventListener("click", function()
 {
     if(!playing)
@@ -517,12 +552,17 @@ function resetLevel()
     updateScore();
 }
 
+function sortObj()
+{
+    objectList.sort((a, b) =>
+    {
+        return a.objType - b.objType;
+    });
+}
+
 ///// DRAW /////
 
-objectList.sort((a, b) =>
-{
-    return a.objType - b.objType;
-});
+sortObj();
 
 for (i in objectList)
 {

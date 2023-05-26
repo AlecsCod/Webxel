@@ -24,22 +24,18 @@ $user_data = check_login($con);
 </head>
 
 <body>
-   <form class="upload-field">
-<div>
-<form>
-  <input type="file" id="myFile" name="filename">
-  <input type="submit">
-</form>
-<button type="export" class="export-btn">Export</button>
-<select name="options" id="options">
+   <div class="upload-field">
+      <input type="file" id="myFile" name="filename">
+      <input type="submit">
+      <button type="export" class="export-btn">Export</button>
+      <select name="options" id="options">
 
-</select>
-<button type="add" class="add-btn">Add</button>
-<button type="remove" class="remove-btn">Remove</button>
-<button type="test" class="test-btn">Test</button>
+      </select>
+      <button type="add" class="add-btn">Add</button>
+      <button type="remove" class="remove-btn">Remove</button>
+      <button id="testButton">Test</button>
+   </div>
 
-</div>
-   </form>
    <div class="gradient"></div>
    <div class="vignette"></div>
    <nav id="topnav">

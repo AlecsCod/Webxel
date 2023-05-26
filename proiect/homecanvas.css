@@ -79,6 +79,22 @@ body {
     
     scale: 1.25;
  }
+
+ .upload-field{
+    background-color: white;
+    display: flex;
+    top: 120px;
+    right: 120px;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    margin: auto;
+    background: #e0e0e0;
+    overflow: hidden;
+    justify-content: space-evenly;
+    z-index: 100;
+    float: right;
+}
  
  @font-face {
     font-family: Retro_Gaming;

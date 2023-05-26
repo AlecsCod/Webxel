@@ -36,6 +36,7 @@ pushableArray = [],
 buttonArray = [],
 frameSpeedHandler = 0,
 muteButton = document.getElementById("muteButton"),
+testButton = document.getElementById("testButton"),
 scoreDisplay = document.getElementById("scoreDisplay"),
 audioMuted = false,
 collectedGems = 0,
@@ -364,16 +365,19 @@ new gateObj(12, 7);
 
 window.addEventListener("keydown", movePlayer, false);
 
-window.addEventListener("click", function()
+testButton.addEventListener("click", function()
 {
     if(!playing)
     {
+        testButton.innerHTML = "Stop";
         soundBank[0].play();
-        soundBank[0].muted = false;
+        if (!audioMuted) soundBank[0].muted = false;
+        else soundBank[0].muted = true;
         playing = true;
     }
     else
     {
+        testButton.innerHTML = "Test";
         soundBank[0].muted = true;
         resetLevel();
         playing = false;

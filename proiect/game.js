@@ -177,7 +177,7 @@ class gemObj extends object
             }
         }
 
-        if (player.x == this.x && player.y == this.y && !this.collected)
+        if (player.x == this.x && player.y == this.y && !this.collected && playing)
         {
             collectedGems++;
             updateScore();
@@ -375,27 +375,29 @@ addButton.addEventListener("click", function()
 {
     if(!playing)
     {
-        switch (parseInt(options.value))
+        var valX = parseInt(xInput.value), valY = parseInt(yInput.value), valO = parseInt(options.value);
+        new gemObj(xInput.value, yInput.value);
+        switch (parseInt(valO))
         {
             case 8:
-                player.x = player.initX = xInput.value; 
-                player.y = player.initY = yInput.value;
+                player.x = player.initX = valX; 
+                player.y = player.initY = valY;
                 break;
             case 7:
-                new gemObj(xInput.value, yInput.value);
-                sortObj();
+                new gemObj(valX, valY);
+                //sortObj();
                 break;
             case 5:
-                new gateObj(xInput.value, yInput.value);
+                new gateObj(valX, valY);
                 break;
             case 4:
-                new wallObj(xInput.value, yInput.value);
+                new wallObj(valX, valY);
                 break;
             case 3:
-                new pushObj(xInput.value, yInput.value);
+                new pushObj(valX, valY);
                 break;
             case 2:
-                new buttonObj(xInput.value, yInput.value);
+                new buttonObj(valX, valY);
                 break;
         }
     }

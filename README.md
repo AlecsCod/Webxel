@@ -24,7 +24,7 @@ https://codepen.io/YoannM/pen/yyExEO (CSS pentru login/register button)
 
 https://www.dafont.com/retro-gaming.font (font site)
 
-https://sfxr.me (SFX)
+https://sfxr.me (efecte sonore)
 
 
 # Ce am realizat noi:

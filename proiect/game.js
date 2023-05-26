@@ -375,8 +375,7 @@ addButton.addEventListener("click", function()
 {
     if(!playing)
     {
-        var valX = parseInt(xInput.value), valY = parseInt(yInput.value), valO = parseInt(options.value);
-        new gemObj(xInput.value, yInput.value);
+        var valX = parseInt(xInput.value), valY = parseInt(yInput.value), valO = parseInt(options.value), newObj;
         switch (parseInt(valO))
         {
             case 8:
@@ -384,22 +383,25 @@ addButton.addEventListener("click", function()
                 player.y = player.initY = valY;
                 break;
             case 7:
-                new gemObj(valX, valY);
+                console.log(1);
+                newObj = new gemObj(valX, valY);
                 //sortObj();
                 break;
             case 5:
-                new gateObj(valX, valY);
+                newObj = new gateObj(valX, valY);
                 break;
             case 4:
-                new wallObj(valX, valY);
+                newObj = new wallObj(valX, valY);
                 break;
             case 3:
-                new pushObj(valX, valY);
+                newObj = new pushObj(valX, valY);
                 break;
             case 2:
-                new buttonObj(valX, valY);
+                newObj = new buttonObj(valX, valY);
                 break;
         }
+        sortObj();
+        console.log(newObj);
     }
 });
 

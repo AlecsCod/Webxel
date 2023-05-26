@@ -64,10 +64,6 @@ class object
         this.solidObject = false;
         objectList.push(this);
     }
-    /*checkAdjacency() // PUSHABLE OBJECT CONDITION CHECKER
-    {
-
-    }*/
     updateObj()
     {
         ctx.drawImage(this.img, 16 * this.frameX, 16 * this.frameY, 16, 16, Math.round(this.lerpedX), Math.round(this.lerpedY), 16, 16);
@@ -300,6 +296,19 @@ class gateObj extends object
     }
 }
 
+class wallObj extends object
+{
+    constructor(x, y)
+    {
+        super(x, y, "metal_plate", 4);
+        this.solidObject = true;
+    }
+    updateObj()
+    {
+        super.updateObj();
+    }
+}
+
 ///// LOADING OBJECTS /////
 
 const player = new plrObj(0, 0);
@@ -309,14 +318,33 @@ for (var i = 2; i <= 6; i++)
     for (var j = 2; j <= 4; j++)
     {
         new pushObj(i*2, j);
-        new gemObj(i*2, j);
     }
 }
 
-new buttonObj(2, 2);
-new buttonObj(3, 4);
+for (var i = 12; i <= 15; i++)
+{
+    for (var j = 8; j <= 9; j++)
+    {
+        new gemObj(i, j);
+    }
+}
 
-new gateObj(7, 7);
+for (var i = 1; i <= 3; i++)
+{
+    new wallObj(11, i + 6);
+    new wallObj(i + 12, 7);
+}
+
+for (var i = 1; i <= 4; i++)
+{
+    new buttonObj((i-1)*2, 9);
+    for (var j = 1; j <= 3; j++)
+    {
+        new wallObj(i*2-1, j + 6);
+    }
+}
+
+new gateObj(12, 7);
 
 /*objectList.sort((a, b) =>
 {

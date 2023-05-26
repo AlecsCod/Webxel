@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 	if (!empty($user_name) && !empty($password) && !is_numeric($user_name)) {
 
-		//citeste din database
+		//citeste din database datele introduse
 		$query = "select * from users where user_name = '$user_name' limit 1";
 		$result = mysqli_query($con, $query);
 
@@ -30,15 +30,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				}
 			}
 		}
-
-		echo "Wrong username or password!";
+		//eroare daca datele introduse de utilizator nu se afla in database
+		echo "<p id='errorMsg' class='error'>Wrong username or password!</p>";
 	} else {
-		echo "Wrong username or password!";
+		echo "<p id='errorMsg' class='error'>Wrong username or password!</p>";
 	}
 }
 
 ?>
-
+<style>
+	.error {
+		color: red;
+		background-color: #e0e0e0;
+		text-align: center;
+	}
+</style>
 
 
 <!DOCTYPE html>
@@ -84,3 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </body>
 
 </html>
+
+<script>
+	function hideMessage() {
+		document.getElementById("errorMsg").style.display = "none";
+	};
+	setTimeout(hideMessage, 3000);
+</script>

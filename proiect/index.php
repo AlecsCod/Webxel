@@ -28,9 +28,9 @@ $user_data = check_login($con);
       <input type="file" id="myFile" name="filename">
       <input type="submit">
       <button type="export" class="export-btn">Export</button>
-      <select name="options" id="options">
-
-      </select>
+      <select name="options" id="options"></select>
+      <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
+      <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
       <button type="add" class="add-btn">Add</button>
       <button type="remove" class="remove-btn">Remove</button>
       <button id="testButton">Test</button>

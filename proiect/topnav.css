@@ -52,6 +52,7 @@ body{
  @font-face {
     font-family: Retro_Gaming;
     src: url(Retro\ Gaming.ttf);
+
 }
 
 .upload-field{
@@ -67,4 +68,5 @@ body{
     justify-content: space-evenly;
     z-index: 100;
     float: right;
+
 }

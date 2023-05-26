@@ -56,6 +56,9 @@ for (var i = 0; i < soundList.length; i++)
 }
 soundBank[0].loop = true;
 
+const selector = new Image();
+selector.src = "images/gameAssets/selector.png";
+
 class object
 {
     constructor(x, y, img, objType)
@@ -360,6 +363,8 @@ console.log(objectList[2]);
 
 new gateObj(12, 7);
 
+console.log(objectList.length);
+
 /*objectList.sort((a, b) =>
 {
     return a.objType - b.objType;
@@ -385,7 +390,6 @@ addButton.addEventListener("click", function()
             case 7:
                 console.log(1);
                 newObj = new gemObj(valX, valY);
-                //sortObj();
                 break;
             case 5:
                 newObj = new gateObj(valX, valY);
@@ -401,7 +405,27 @@ addButton.addEventListener("click", function()
                 break;
         }
         sortObj();
+        updateScore();
         console.log(newObj);
+        console.log(objectList.length);
+        console.log(player.x);
+        console.log(player.y);
+    }
+});
+
+removeButton.addEventListener("click", function()
+{
+    var valX = parseInt(xInput.value), valY = parseInt(yInput.value);
+    if(!playing)
+    {
+        for(var i = 0; i < objectList.length; i++)
+        {
+            if (objectList[i].x == valX && objectList[i].x == valY)
+            {
+                delete objectList[i];
+                sortObj();
+            }
+        }
     }
 });
 
@@ -579,8 +603,6 @@ console.log(mapJSON);
 
 updateScore();
 
-let objLLen = objectList.length;
-
 function draw()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -594,9 +616,14 @@ function draw()
         frameSpeedHandler = 1;
     }
 
-    for (var i = 0; i < objLLen; i++)
+    for (var i = 0; i < objectList.length; i++)
     {
-        objectList[i].updateObj();
+        if (objectList[i]) objectList[i].updateObj();
+    }
+
+    if (!playing)
+    {
+        ctx.drawImage(selector, 0, 0, 16, 16, parseInt(xInput.value) * 16, parseInt(yInput.value) * 16, 16, 16);
     }
 
     requestAnimationFrame(draw);

@@ -24,6 +24,22 @@ $user_data = check_login($con);
 </head>
 
 <body>
+   <form class="upload-field">
+<div>
+<form>
+  <input type="file" id="myFile" name="filename">
+  <input type="submit">
+</form>
+<button type="export" class="export-btn">Export</button>
+<select name="options" id="options">
+
+</select>
+<button type="add" class="add-btn">Add</button>
+<button type="remove" class="remove-btn">Remove</button>
+<button type="test" class="test-btn">Test</button>
+
+</div>
+   </form>
    <div class="gradient"></div>
    <div class="vignette"></div>
    <nav id="topnav">
@@ -37,6 +53,7 @@ $user_data = check_login($con);
    <p id="scoreDisplay"></p>
    <button id="muteButton"></button>
    <script src="game.js"></script>
+
 </body>
 
 </html>

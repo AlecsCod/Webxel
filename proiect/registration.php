@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         header("Location: login.php");
         die;
     } else {
-        echo "<p class='Error'>Please enter some valid information!</p>";
+        echo "<p id='errorMsg' class='Error'>Please enter some valid information!</p>";
     }
 }
 ?>
@@ -81,3 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </body>
 
 </html>
+<script>
+    function hideMessage() {
+        document.getElementById("errorMsg").style.display = "none";
+    };
+    setTimeout(hideMessage, 3000);
+</script>

@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			}
 		}
 
-		echo "<p class='error'>Wrong username or password!</p>";
+		echo "<p id='errorMsg' class='error'>Wrong username or password!</p>";
 	} else {
-		echo "<p class='error'>Wrong username or password!</p>";
+		echo "<p id='errorMsg' class='error'>Wrong username or password!</p>";
 	}
 }
 
@@ -90,3 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </body>
 
 </html>
+
+<script>
+    function hideMessage() {
+        document.getElementById("errorMsg").style.display = "none";
+    };
+    setTimeout(hideMessage, 3000);
+</script>

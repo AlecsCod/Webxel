@@ -24,23 +24,22 @@ $user_data = check_login($con);
 </head>
 
 <body>
+
    <div class="upload-field">
-      <input type="file" id="myFile" name="filename">
-      <input type="submit">
+      <input class="file " type="file" id="myFile" name="filename">
       <br>
-      <button type="export" class="export-btn">Export</button>
+      <button class="export-btn" type="export" class="export-btn">Export</button>
       <br>
-      <select name="options" id="options"></select>
-      <br>
-      <p>x:</p>
+      <select class="option-btn" name="options" id="options"></select>
+      <div class="xy-btn">
+      <p>x: </p>
       <input type="text" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
-
-      <p>y:</p>
+      <p>y: </p>
       <input type="text" style="width: 40px" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input>
-
-      <button type="add" class="add-btn">Add</button>
-      <button type="remove" class="remove-btn">Remove</button>
-      <button id="testButton">Test</button>
+      </div>
+      <button class="add-btn" type="add" class="add-btn">Add</button>
+      <button class="remove-btn" type="remove" class="remove-btn">Remove</button>
+      <button class="test-btn" id="testButton">Test</button>
    </div>
 
    <div class="gradient"></div>

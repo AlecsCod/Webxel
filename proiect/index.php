@@ -28,7 +28,7 @@ $user_data = check_login($con);
       <input type="file" id="myFile" name="filename">
       <input type="submit">
       <br>
-      <button type="export" class="export-btn">Export</button>
+      <button type="export" class="export-btn">Save as JSON file</button>
       <br>
       <select name="options" id="options"></select>
       <br>

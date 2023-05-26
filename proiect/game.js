@@ -17,10 +17,11 @@ Type 6: Goal;
 Type 7: Gem;
 Type 8: Player.
 
-(Array-ul objectList de mai jos va fi sortat în funcție de zIndex pentru rendering fără probleme vizuale pe canvas)
+(Array-ul objectList de mai jos va fi sortat în funcție de objType pentru rendering fără probleme vizuale pe canvas)
 */
 
-let objectList = [],
+let mapJSON = {"x": [], "y": [], "objType": []},
+objectList = [],
 soundList =
 [
     "music.mp3",
@@ -52,11 +53,11 @@ soundBank[0].loop = true;
 
 class object
 {
-    constructor(x, y, img, zIndex)
+    constructor(x, y, img, objType)
     {
         this.initX = x;
         this.initY = y;
-        this.zIndex = zIndex;
+        this.objType = objType;
         this.img = new Image();
         this.img.src = "images/gameAssets/" + img + ".png";
         this.x = x;
@@ -520,8 +521,17 @@ function resetLevel()
 
 objectList.sort((a, b) =>
 {
-    return a.zIndex - b.zIndex;
+    return a.objType - b.objType;
 });
+
+for (i in objectList)
+{
+    mapJSON.x[i] = objectList[i].x;
+    mapJSON.y[i] = objectList[i].y;
+    mapJSON.objType[i] = objectList[i].objType;
+}
+
+console.log(mapJSON);
 
 updateScore();
 

@@ -38,7 +38,8 @@ frameSpeedHandler = 0,
 muteButton = document.getElementById("muteButton"),
 scoreDisplay = document.getElementById("scoreDisplay"),
 audioMuted = false,
-collectedGems = 0;
+collectedGems = 0,
+playing = false;
 
 for (var i = 0; i < soundList.length; i++)
 {
@@ -52,6 +53,8 @@ class object
 {
     constructor(x, y, img, zIndex)
     {
+        this.initX = x;
+        this.initY = y;
         this.zIndex = zIndex;
         this.img = new Image();
         this.img.src = "images/gameAssets/" + img + ".png";
@@ -344,6 +347,7 @@ for (var i = 1; i <= 4; i++)
     }
 }
 
+
 console.log(JSON.parse(JSON.stringify(objectList[2])));
 console.log(objectList[2]);
 
@@ -362,7 +366,18 @@ window.addEventListener("keydown", movePlayer, false);
 
 window.addEventListener("click", function()
 {
-    soundBank[0].play();
+    if(!playing)
+    {
+        soundBank[0].play();
+        soundBank[0].muted = false;
+        playing = true;
+    }
+    else
+    {
+        soundBank[0].muted = true;
+        resetLevel();
+        playing = false;
+    }
 });
 
 muteButton.addEventListener("click", function()
@@ -385,7 +400,7 @@ muteButton.addEventListener("click", function()
 
 function movePlayer(e)
 {
-    if (!player.moving)
+    if (!player.moving && playing)
     {
         switch(e.keyCode)
         {
@@ -430,7 +445,11 @@ function movePlayer(e)
 
 function updateScore()
 {
-    scoreDisplay.innerHTML = collectedGems + "/" + gemArray.length + " Gems";
+    if(gemArray[0] != null)
+    {
+        scoreDisplay.innerHTML = collectedGems + "/" + gemArray.length + " Gems";
+    }
+    else scoreDisplay.innerHTML = "";
 }
 
 function playSound(number)
@@ -470,6 +489,29 @@ function movePushable(fromDir)
     }
 }
 
+function resetLevel()
+{
+    if (objectList[0] != null) for (var i = 0; i < objectList.length; i++)
+    {
+        objectList[i].x = objectList[i].initX;
+        objectList[i].y = objectList[i].initY;
+    }
+
+    if (gemArray[0] != null) for (var i = 0; i < gemArray.length; i++)
+    {
+        gemArray[i].collected = false;
+        gemArray[i].frameY = 0;
+    }
+
+    if (buttonArray[0] != null) for (var i = 0; i < buttonArray.length; i++)
+    {
+        buttonArray[i].active = false;
+    }
+
+    collectedGems = 0;
+    updateScore();
+}
+
 ///// DRAW /////
 
 objectList.sort((a, b) =>
@@ -477,10 +519,7 @@ objectList.sort((a, b) =>
     return a.zIndex - b.zIndex;
 });
 
-if(gemArray[0] != null)
-{
-    updateScore();
-}
+updateScore();
 
 let objLLen = objectList.length;
 
